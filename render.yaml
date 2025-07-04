@@ -1,0 +1,11 @@
+# render.yaml
+services:
+  - type: web
+    name: atomic-xmd
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    repo: https://github.com/Atomicend2/ATOMIC-XMD
+    branch: main
+    autoDeploy: true
