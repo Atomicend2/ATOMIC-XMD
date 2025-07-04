@@ -1,8 +1,10 @@
-// plugins/menu.js
+const { animeStyleMenu } = require("../lib/anime-ui"); const prefix = "."; // Change this if your bot uses a different prefix
 
-const { animeMenu } = require('../utils/animeStyle');
+module.exports = { name: "menu", alias: ["help", "cmds"], desc: "Show the list of available commands", type: "main", exec: async (m, { conn, command }) => { const commands = [ { category: "AI", cmds: ["ai", "img", "ask", "code"] }, { category: "Games", cmds: ["tic", "snake", "truth", "dare", "truthscanner"] }, { category: "Group", cmds: ["kick", "add", "promote", "demote", "tagall"] }, { category: "Media", cmds: ["vv", "sticker", "toimg", "tomp3"] }, { category: "Utilities", cmds: ["ping", "owner", "runtime", "speed"] }, { category: "Custom", cmds: ["animequote", "animewall", "waifu"] } ];
 
-module.exports = { name: 'menu', description: 'Shows the full command menu', category: 'main', command: ['menu', 'help', '?'],
+let menuText = animeStyleMenu(commands, prefix);
+await conn.reply(m.chat, menuText, m, { mentions: [m.sender] });
 
-async execute(client, message, args, db) { const menuText = animeMenu({ owner: 'Atomic', botName: 'ATOMIC-XMD', prefix: '.', commandCount: 400, categories: [ 'AI', 'Audio', 'Autoreply', 'Bot', 'Budget', 'Document', 'Download', 'Editor', 'Game', 'Group', 'Logia', 'Misc', 'Personal', 'Plugin', 'Schedule', 'Search', 'Sticker', 'Textmaker', 'User', 'Vars', 'Video', 'WhatsApp' ] }); return message.reply(menuText); } };
+} };
 
+                                                                                                                                                            
